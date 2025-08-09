@@ -1,401 +1,1150 @@
-<!-- 
-  Datei: index.html
-  Kodierung: UTF-8
-  Anleitung: Speichere diese Datei als index.html und lade sie in dein Webverzeichnis hoch.
-  Bilder: Pfade bleiben unverändert (z. B. images/Profilbild.JPG) – stelle sicher, dass diese Dateien vorhanden sind.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eigentum ohne Eigenkapital? Jetzt prüfen! – Provisionsfreie Kapitalanlagen</title>
-  <meta name="description" content="Ohne Eigenkapital zur Immobilie: bankenbewertet, 100% provisionsfrei. Kostenlose Bonitätsprüfung mit 24h-Antwortgarantie. Jetzt unverbindlich anfragen.">
-  <style>
-    :root{
-      --step--1: clamp(.82rem, .77rem + .25vw, .95rem);
-      --step-0: clamp(1rem, .92rem + .45vw, 1.15rem);
-      --step-1: clamp(1.25rem, 1.05rem + .95vw, 1.6rem);
-      --step-2: clamp(1.5rem, 1.2rem + 1.6vw, 2.1rem);
-      --step-3: clamp(2rem, 1.6rem + 2.6vw, 3rem);
-      --step-4: clamp(2.6rem, 2rem + 4vw, 4rem);
-      --space-1: clamp(.5rem, .4rem + .5vw, .75rem);
-      --space-2: clamp(.75rem, .6rem + .8vw, 1rem);
-      --space-3: clamp(1rem, .8rem + 1vw, 1.5rem);
-      --space-4: clamp(1.5rem, 1rem + 2vw, 2.25rem);
-      --space-5: clamp(2rem, 1.2rem + 3vw, 3rem);
-      --container: min(100%, 68rem);
-      --radius-1: 12px; --radius-2: 20px; --radius-3: 28px;
-      --c-bg: #0f172a; --c-bg-2:#1e293b; --c-bg-3:#334155;
-      --c-text:#111827; --c-muted:#6b7280; --c-white:#fff;
-      --c-primary:#3b82f6; --c-secondary:#8b5cf6; --c-accent:#10b981;
-      --c-warn:#dc2626; --c-amber:#f59e0b;
-      --shadow-1: 0 10px 30px rgba(0,0,0,.15);
-      --shadow-2: 0 20px 50px rgba(0,0,0,.25);
-      --focus: 0 0 0 3px rgba(59,130,246,.35);
-      --tap: 44px;
-      --safe: env(safe-area-inset-bottom);
-    }
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *{animation:none!important;transition:none!important}
-    }
-    body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      line-height:1.6; color:var(--c-text); overflow-x:hidden; background:#fff;
-    }
-    img{max-width:100%; height:auto; display:block}
-    .container{width:100%; max-width:var(--container); margin-inline:auto; padding-inline:clamp(16px, 4vw, 28px)}
-    a{color:inherit}
-    /* Header / Nav */
-    .nav{position:absolute; inset-inline:0; top:0; z-index:20; padding-block:var(--space-2)}
-    .nav-wrap{display:flex; align-items:center; justify-content:space-between; gap:var(--space-2)}
-    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; color:#fff; font-size:var(--step-1); letter-spacing:.2px}
-    .logo-dot{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg,var(--c-primary),#1d4ed8); box-shadow:0 8px 20px rgba(59,130,246,.35); color:#fff; font-size:18px}
-    .trust{display:flex; align-items:center; gap:.5rem; color:#10b981; font-weight:700; font-size:var(--step--1);
-      background:rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.35); padding:.55rem .9rem; border-radius:999px; backdrop-filter:saturate(140%) blur(6px)}
-    /* Hero */
-    .hero{min-height:100vh; display:grid; align-items:center; background:
-      linear-gradient(135deg,var(--c-bg) 0%, var(--c-bg-2) 50%, var(--c-bg-3) 100%); position:relative; overflow:hidden}
-    .hero::before{
-      content:""; position:absolute; inset:0;
-      background:
-        radial-gradient(800px 400px at 15% 25%, rgba(59,130,246,.12), transparent 60%),
-        radial-gradient(700px 400px at 85% 75%, rgba(139,92,246,.12), transparent 60%);
-      animation: aurora 22s ease-in-out infinite;
-    }
-    @keyframes aurora{0%,100%{opacity:1;transform:rotate(0) scale(1)}50%{opacity:.85;transform:rotate(.8deg) scale(1.02)}}
-    .hero-grid{display:grid; gap:var(--space-5); grid-template-columns:1fr; padding-block:clamp(90px, 10vh, 140px) var(--space-4); position:relative; z-index:1}
-    @media (min-width: 768px){.hero-grid{grid-template-columns:1.1fr .9fr; align-items:center}}
-    .h-title{font-size:var(--step-4); line-height:1.08; color:#fff; font-weight:900; margin:0 0 var(--space-2)}
-    .h-title .hl{background:linear-gradient(135deg,#fbbf24,var(--c-amber)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
-    .h-sub{font-size:var(--step-0); color:rgba(255,255,255,.9); margin:0 0 var(--space-3)}
-    .badges{display:flex; flex-wrap:wrap; gap:.6rem}
-    .badge{display:inline-flex; align-items:center; gap:.45rem; padding:.5rem .85rem; border-radius:999px; font-weight:700; font-size:.95rem; color:#fff;
-      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22)}
-    /* Simple icon replacement */
-    .ico{font-style:normal}
-    /* Process mini */
-    .process{display:flex; align-items:center; justify-content:space-between; gap:1rem; max-width:520px; margin-inline:auto}
-    .p-item{display:grid; place-items:center; text-align:center}
-    .p-box{width:74px; height:74px; border-radius:18px; display:grid; place-items:center; color:#fff; box-shadow:var(--shadow-1)}
-    .p1{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
-    .p2{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
-    .p3{background:linear-gradient(135deg,#10b981,#059669)}
-    .p-label{margin-top:.5rem; color:#fff; font-weight:800; font-size:.98rem}
-    .p-arrow{opacity:.6}
-    /* Card form */
-    .form-card{background:#fff; border-radius:var(--radius-3); padding:var(--space-4); box-shadow:var(--shadow-2); position:relative; overflow:hidden}
-    .form-card::before{content:""; position:absolute; top:0; left:0; right:0; height:4px;
-      background:linear-gradient(90deg,var(--c-primary),var(--c-secondary),var(--c-accent),#fbbf24); background-size:400% 100%; animation:stripe 3.5s ease infinite}
-    @keyframes stripe{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-    .form-h{ text-align:center; margin-bottom:var(--space-3)}
-    .form-h h2{font-size:var(--step-2); margin:0 0:.4rem; font-weight:900; color:#111827}
-    .form-h p{color:var(--c-muted); font-size:var(--step--1)}
-      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Immobilie ohne Eigenkapital kaufen | 24h Bonitätsprüfung kostenlos</title>
+    <meta name="description" content="✓ 0€ Eigenkapital ✓ Bankenbewertete Immobilien ✓ Kostenlose Bonitätsprüfung in 24h ✓ Provisionsfreie Beratung. Jetzt unverbindlich anfragen!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e40af;
+            --accent: #dc2626;
+            --accent-dark: #b91c1c;
+            --success: #10b981;
+            --text-primary: #1a202c;
+            --text-secondary: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --safe-bottom: env(safe-area-inset-bottom, 0);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-inline: clamp(1rem, 4vw, 2rem);
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            line-height: 1.2;
+            font-weight: 900;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.5rem, 4vw + 0.5rem, 2.5rem);
+            margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Utilities */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .text-center { text-align: center; }
+        .text-accent { color: var(--accent); }
+        .text-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: clamp(0.75rem, 2vw, 1rem) 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--primary);
+        }
+        
+        .trust-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            padding: 0.375rem 0.75rem;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            font-weight: 600;
+            color: var(--success);
+            white-space: nowrap;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: clamp(3rem, 8vw, 5rem) 0 clamp(2rem, 5vw, 3rem);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+            max-width: 600px;
+        }
+        
+        /* Badges */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+        
+        /* Forms */
+        .form-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            box-shadow: var(--shadow-lg);
+            margin-top: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .form-grid {
+            display: grid;
+            gap: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        @media (min-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        label {
+            font-weight: 600;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            color: var(--text-primary);
+        }
+        
+        input {
+            padding: clamp(0.75rem, 2vw, 1rem);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-white);
+            min-height: 48px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        }
+        
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--accent);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: clamp(0.875rem, 2vw, 1.125rem) clamp(1.5rem, 4vw, 2rem);
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            min-height: 48px;
+            white-space: nowrap;
+        }
+        
+        .btn:focus-visible {
+            outline: 3px solid currentColor;
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: var(--primary-dark);
+        }
+        
+        /* Sections */
+        section {
+            padding: clamp(3rem, 8vw, 5rem) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+        
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            gap: clamp(2rem, 4vw, 3rem);
+            counter-reset: step;
+        }
+        
+        @media (min-width: 768px) {
+            .process-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .process-step {
+            counter-increment: step;
+            text-align: center;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .process-step::before {
+            content: counter(step);
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        @media (min-width: 640px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .benefit-card {
+            background: var(--bg-white);
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Stats */
+        .stats {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(2rem, 4vw, 3rem);
+            margin-top: clamp(2rem, 4vw, 3rem);
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .stat-number {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: rgba(255, 255, 255, 0.8);
+            padding: clamp(2rem, 5vw, 3rem) 0 calc(clamp(1rem, 3vw, 2rem) + var(--safe-bottom));
+        }
+        
+        .footer-content {
+            display: grid;
+            gap: clamp(2rem, 4vw, 3rem);
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        
+        .footer-links {
+            display: grid;
+            gap: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        @media (min-width: 640px) {
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .footer-section h4 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-section a:hover, .footer-section a:focus {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: clamp(1.5rem, 3vw, 2rem);
+            text-align: center;
+        }
+        
+        .footer-bottom small {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+        
+        /* Video Container */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Sticky CTA Bar - Mobile Only */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 0.75rem clamp(1rem, 4vw, 2rem) calc(0.75rem + var(--safe-bottom));
+            z-index: 200;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sticky-cta {
+                display: block;
+            }
+            
+            body {
+                padding-bottom: calc(80px + var(--safe-bottom));
+            }
+        }
+        
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+        
+        .sticky-cta-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .sticky-cta .btn {
+            font-size: 0.875rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: 6px;
+            min-height: 44px;
+        }
+        
+        .sticky-cta .btn-scroll {
+            grid-column: span 1;
+        }
+        
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Loading state */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        /* Success message */
+        .success-message {
+            background: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Icons (inline SVG fallback) */
+        .icon {
+            width: 1.25em;
+            height: 1.25em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Expert Section */
+        .expert-intro {
+            display: grid;
+            gap: clamp(1.5rem, 3vw, 2rem);
+            align-items: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .expert-intro {
+                grid-template-columns: 200px 1fr;
+                text-align: left;
+            }
+        }
+        
+        .expert-credentials {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-  <!-- Nav -->
-  <nav class="nav" aria-label="Hauptnavigation">
-    <div class="container nav-wrap">
-      <div class="brand">
-        <span class="logo-dot" aria-hidden="true">🏠</span>
-        <span>Provisionsfreie Kapitalanlagen</span>
-      </div>
-      <div class="trust" aria-label="Seriosität und Kostenhinweis">✅ 100% seriös & kostenlos</div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <h1 class="h-title">Eigentum ohne <span class="hl">Eigenkapital?</span><br>Jetzt prüfen!</h1>
-        <p class="h-sub">Bankenbewertete Immobilien ohne eigenes Kapital. Kostenlose Bonitätsprüfung – Rückmeldung in 24&nbsp;Stunden.</p>
-        <div class="badges" role="list" aria-label="Vorteile">
-          <span class="badge" role="listitem">€ 0&nbsp;Eigenkapital</span>
-          <span class="badge" role="listitem">⏱️ 24h Garantie</span>
-          <span class="badge" role="listitem">🤝 100% kostenfrei</span>
-        </div>
-      </div>
-      <div aria-label="Ablaufübersicht">
-        <div class="process" aria-hidden="true">
-          <div class="p-item">
-            <div class="p-box p1">🤝</div>
-            <div class="p-label">Beratung</div>
-          </div>
-          <div class="p-arrow">➡️</div>
-          <div class="p-item">
-            <div class="p-box p2">👤✔️</div>
-            <div class="p-label">Bonität</div>
-          </div>
-          <div class="p-arrow">➡️</div>
-          <div class="p-item">
-            <div class="p-box p3">🏡</div>
-            <div class="p-label">Kauf</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Form Card -->
-    <div class="container" id="kontakt">
-      <section class="form-card" aria-labelledby="form-title">
-        <div class="form-h">
-          <h2 id="form-title">Kostenlose Bonitätsprüfung</h2>
-          <p>60&nbsp;Sekunden ausfüllen – Antwort garantiert in 24&nbsp;Stunden.</p>
-        </div>
-
-        <form id="contactForm" action="https://formsubmit.co/info@provisionsfreie-kapitalanlagen.de" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="Neue Anfrage - Provisionsfreie Kapitalanlagen">
-          <input type="hidden" name="_next" value="https://saschapulcher.github.io/provisionsfreie-kapitalanlagen/?success=true">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-
-          <div class="grid">
-            <div>
-              <label for="firstName">Vorname *</label>
-              <input id="firstName" name="Vorname" type="text" autocomplete="given-name" required>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span>🏠</span>
+                <span>Provisionsfreie Kapitalanlagen</span>
             </div>
-            <div>
-              <label for="lastName">Nachname *</label>
-              <input id="lastName" name="Nachname" type="text" autocomplete="family-name" required>
+            <div class="trust-badge">
+                ✓ 100% Seriös & Kostenlos
             </div>
-            <div>
-              <label for="email">E-Mail-Adresse *</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div>
-              <label for="phone">Telefonnummer *</label>
-              <input id="phone" name="Telefon" type="tel" autocomplete="tel" required>
-            </div>
-          </div>
+        </nav>
+    </header>
 
-          <button type="submit" class="btn">🚀 Jetzt kostenlos prüfen lassen</button>
-        </form>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Eigentum ohne <span class="text-gradient">Eigenkapital?</span><br>Jetzt prüfen!</h1>
+                    <p class="hero-subtitle">Investieren Sie in bankenbewertete Immobilien ohne eigenes Kapital. Kostenlose Bonitätsprüfung mit 24h-Garantie.</p>
+                    
+                    <div class="badges">
+                        <div class="badge">💶 0€ Eigenkapital</div>
+                        <div class="badge">⏱️ 24h Garantie</div>
+                        <div class="badge">🤝 100% Kostenfrei</div>
+                    </div>
+                    
+                    <!-- Lead Form -->
+                    <div class="form-card" id="kontakt">
+                        <div class="form-header">
+                            <h2>Kostenlose Bonitätsprüfung</h2>
+                            <p>In nur 60 Sekunden ausgefüllt - Antwort in 24h</p>
+                        </div>
+                        
+                        <form id="contactForm" action="https://formsubmit.co/info@provisionsfreie-kapitalanlagen.de" method="POST">
+                            <input type="hidden" name="_subject" value="Neue Anfrage - Provisionsfreie Kapitalanlagen">
+                            <input type="hidden" name="_next" value="https://provisionsfreie-kapitalanlagen.de/?success=true">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName">Vorname *</label>
+                                    <input type="text" id="firstName" name="Vorname" required placeholder="Max" autocomplete="given-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Nachname *</label>
+                                    <input type="text" id="lastName" name="Nachname" required placeholder="Mustermann" autocomplete="family-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-Mail *</label>
+                                    <input type="email" id="email" name="email" required placeholder="max@beispiel.de" autocomplete="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Telefon *</label>
+                                    <input type="tel" id="phone" name="Telefon" required placeholder="+49 123 456789" autocomplete="tel">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                🚀 Jetzt kostenlos prüfen lassen
+                            </button>
+                        </form>
+                        
+                        <div class="badges" style="justify-content: center; margin-top: 1.5rem;">
+                            <div class="badge" style="background: var(--bg-light); color: var(--text-primary); border-color: var(--border);">🔒 SSL-verschlüsselt</div>
+                            <div class="badge" style="background: var(--bg-light); color: var(--text-primary); border-color: var(--border);">🎁 100% kostenlos</div>
+                            <div class="badge" style="background: var(--bg-light); color: var(--text-primary); border-color: var(--border);">⏰ 24h Antwort</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="guars" aria-label="Sicherheiten">
-          <div class="g">🔒 SSL-verschlüsselt</div>
-          <div class="g">🎁 100% kostenlos</div>
-          <div class="g">⏱️ 24h Antwort-Garantie</div>
+        <!-- Process Section -->
+        <section id="process" style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>So einfach funktioniert's</h2>
+                    <p>Ihr Weg zum Eigentum in nur 3 Schritten</p>
+                </div>
+                
+                <div class="process-grid">
+                    <div class="process-step">
+                        <h3>Persönliche Beratung</h3>
+                        <p>Kostenlose Expertenberatung zu Ihren Möglichkeiten und individueller Investitionsstrategie.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h3>Bonitätsprüfung</h3>
+                        <p>Kostenlose Prüfung mit konkreten Finanzierungsmöglichkeiten innerhalb von 24 Stunden.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <h3>Immobilienkauf</h3>
+                        <p>Persönliche Begleitung und Übernahme aller Kaufnebenkosten wie Notar- und Grundbuchgebühren.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expert Section -->
+        <section id="expert">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ihr persönlicher Immobilienexperte</h2>
+                </div>
+                
+                <div class="expert-intro">
+                    <div style="width: 180px; height: 180px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        👤
+                    </div>
+                    <div>
+                        <h3>Vertrauen Sie auf Expertise</h3>
+                        <p>Als engagierter Experte für Kapitalanlagen helfe ich Ihnen, Ihr Geld sicher und gewinnbringend in bankenbewertete Immobilien zu investieren – ganz ohne Eigenkapital.</p>
+                        <div class="expert-credentials">
+                            <div class="credential">
+                                🏆 <span>500+ erfolgreiche Investments begleitet</span>
+                            </div>
+                            <div class="credential">
+                                📜 <span>Zertifizierter Immobilienfachwirt (IHK)</span>
+                            </div>
+                            <div class="credential">
+                                🤝 <span>100% provisionsfreie Beratung</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>So funktioniert's im Detail</h2>
+                    <p>Erfahren Sie in 3 Minuten alles Wichtige</p>
+                </div>
+                
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/u38ij4nLvd4?si=eBQq--N67L98ky0o" 
+                        title="Provisionsfreie Kapitalanlagen - So funktioniert es" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ihre Vorteile auf einen Blick</h2>
+                    <p>Profitieren Sie von unserem bewährten System</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <h3>0€ Eigenkapital</h3>
+                        <p>Wir übernehmen alle Kaufnebenkosten für Sie.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏦</div>
+                        <h3>Bankenbewertet</h3>
+                        <p>Transparente, geprüfte Immobilienwerte.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚡</div>
+                        <h3>24h Rückmeldung</h3>
+                        <p>Schnelle Bonitätsprüfung mit Garantie.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👨‍💼</div>
+                        <h3>Persönliche Betreuung</h3>
+                        <p>Experten begleiten Sie bis zum Abschluss.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="section-header">
+                    <h2 style="color: white;">Vertrauen Sie auf unsere Erfahrung</h2>
+                    <p style="color: rgba(255,255,255,0.9);">Über 1.500 zufriedene Kunden haben bereits investiert</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div>
+                        <span class="stat-number">1.500+</span>
+                        <span class="stat-label">Zufriedene Kunden</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">€250M+</span>
+                        <span class="stat-label">Vermitteltes Volumen</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">850+</span>
+                        <span class="stat-label">Immobilien vermittelt</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Ø Antwortzeit</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Starten Sie jetzt ohne Eigenkapital!</h2>
+                <p>Nutzen Sie die Chance auf provisionsfreie Immobilieninvestments. Kostenlos und unverbindlich.</p>
+                <a href="#kontakt" class="btn btn-secondary" style="background: white; color: var(--accent); display: inline-flex; width: auto; padding-inline: 2rem;">
+                    🚀 Jetzt kostenlos beraten lassen
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 1rem;">
+                        <span>🏠</span>
+                        <span>Provisionsfreie Kapitalanlagen</span>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.875rem;">
+                        BMA Berlin Management Agency GmbH<br>
+                        Ihr Partner für Immobilieninvestments ohne Eigenkapital
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Rechtliches</h4>
+                        <ul>
+                            <li><a href="impressum.html">Impressum</a></li>
+                            <li><a href="datenschutz.html">Datenschutz</a></li>
+                            <li><a href="agb.html">AGB</a></li>
+                            <li><a href="widerruf.html">Widerrufsrecht</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li>📞 +49 30 30 100 700</li>
+                            <li>✉️ info@provisionsfreie-kapitalanlagen.de</li>
+                            <li>📍 Gipsstr. 23b, 10119 Berlin</li>
+                            <li>🕐 Mo-Fr: 9:00 - 18:00 Uhr</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BMA Berlin Management Agency GmbH</p>
+                <small>
+                    Geschäftsführer: Sascha-Johannes Pulcher | HRB 153919 B | USt-ID: DE311340734<br>
+                    Finanzierungsbeispiele unverbindlich. Bonität vorausgesetzt.
+                </small>
+            </div>
         </div>
-      </section>
+    </footer>
+
+    <!-- Sticky CTA Bar (Mobile Only) -->
+    <div class="sticky-cta" id="stickyCta" aria-label="Schnellzugriff">
+        <div class="sticky-cta-buttons">
+            <a href="#kontakt" class="btn btn-secondary btn-scroll" aria-label="Zum Formular scrollen">
+                📝 Anfragen
+            </a>
+            <a href="tel:+493030100700" class="btn btn-secondary" aria-label="Anrufen">
+                📞 Anruf
+            </a>
+            <a href="mailto:info@provisionsfreie-kapitalanlagen.de" class="btn btn-secondary" aria-label="E-Mail senden">
+                ✉️ E-Mail
+            </a>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <!-- Process -->
-    <section class="section">
-      <div class="container">
-        <div class="s-head fade">
-          <h2 class="s-title">So einfach funktioniert’s</h2>
-          <p class="s-sub">Von der Erstberatung bis zum Immobilienkauf – Ihr Weg zum Eigentum ohne Eigenkapital.</p>
-        </div>
-        <div class="timeline">
-          <article class="t-step fade">
-            <div class="t-n n1">1</div>
-            <h3>Persönliche Beratung</h3>
-            <p>Kostenlos & unverbindlich: Wir entwickeln Ihre individuelle Strategie.</p>
-          </article>
-          <article class="t-step fade">
-            <div class="t-n n2">2</div>
-            <h3>Bonitätsprüfung</h3>
-            <p>Innerhalb von 24 Stunden erhalten Sie konkrete Finanzierungsmöglichkeiten.</p>
-          </article>
-          <article class="t-step fade">
-            <div class="t-n n3">3</div>
-            <h3>Immobilienkauf</h3>
-            <p>Wir übernehmen für Sie Notar- und Grundbuchgebühren.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Expert -->
-    <section class="expert">
-      <div class="container">
-        <div class="expert-grid">
-          <div class="avatar">
-            <img src="images/Profilbild.JPG" alt="Ihr persönlicher Immobilienexperte – Portrait">
-          </div>
-          <div class="exp">
-            <h3>Ihr persönlicher Immobilienexperte</h3>
-            <p class="s-sub">Sicher und gewinnbringend investieren – ohne Eigenkapital.</p>
-            <div class="cred">
-              <div class="cred-item">🎖️ Über 500 begleitete Investments</div>
-              <div class="cred-item">📜 Zertifizierter Immobilienfachwirt (IHK)</div>
-              <div class="cred-item">🤝 100% provisionsfreie Beratung</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Video -->
-    <section class="section" style="background:#f8fafc">
-      <div class="container">
-        <div class="s-head fade">
-          <h2 class="s-title">Erfahren Sie mehr im Video</h2>
-          <p class="s-sub">So einfach ist der Weg zu Ihrer provisionsfreien Immobilie.</p>
-        </div>
-        <div style="max-width:800px; margin: var(--space-4) auto 0;">
-          <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:20px; box-shadow:var(--shadow-1)">
-            <iframe
-              title="Provisionsfreie Kapitalanlagen – Erklärvideo"
-              src="https://www.youtube.com/embed/u38ij4nLvd4?si=eBQq--N67L98ky0o"
-              style="position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:20px"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="benefits">
-      <div class="container">
-        <div class="s-head fade">
-          <h2 class="s-title">Ihre Vorteile auf einen Blick</h2>
-          <p class="s-sub">Bewährtes System für provisionsfreie Immobilieninvestments – ohne Eigenkapital.</p>
-        </div>
-        <div class="b-grid">
-          <article class="b-card fade">
-            <div class="b-ico ico-zero">💰</div>
-            <h3>0 € Eigenkapital erforderlich</h3>
-            <p>Wir übernehmen Notar- und Grundbuchgebühren.</p>
-          </article>
-          <article class="b-card fade">
-            <div class="b-ico ico-bank">🏛️</div>
-            <h3>Bankenbewertete Objekte</h3>
-            <p>Geprüfte Werte durch renommierte Banken.</p>
-          </article>
-          <article class="b-card fade">
-            <div class="b-ico ico-time">⏱️</div>
-            <h3>24h Rückmeldung garantiert</h3>
-            <p>Ihre Anfrage wird binnen 24 Stunden beantwortet.</p>
-          </article>
-          <article class="b-card fade">
-            <div class="b-ico ico-supp">👔</div>
-            <h3>Persönliche Betreuung</h3>
-            <p>Wir begleiten Sie vom Erstgespräch bis zum Abschluss.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Social proof -->
-    <section class="proof">
-      <div class="container">
-        <div class="s-head">
-          <h2 class="s-title" style="color:#fff">Vertrauen Sie auf unsere Erfahrung</h2>
-          <p class="s-sub" style="color:rgba(255,255,255,.85)">Über 1.500 zufriedene Kundinnen &amp; Kunden</p>
-        </div>
-        <div class="stats">
-          <div><div class="stat-num">1.500+</div><div class="stat-lbl">Zufriedene Kunden</div></div>
-          <div><div class="stat-num">€250M+</div><div class="stat-lbl">Vermitteltes Volumen</div></div>
-          <div><div class="stat-num">850+</div><div class="stat-lbl">Vermittelte Immobilien</div></div>
-          <div><div class="stat-num">24h</div><div class="stat-lbl">Ø Antwortzeit</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="cta-final">
-      <div class="container">
-        <h2>Starten Sie jetzt Ihr Investment ohne Eigenkapital!</h2>
-        <p>Kostenlose Beratung &amp; Bonitätsprüfung – völlig unverbindlich.</p>
-        <a href="#kontakt" class="cta-link">🚀 Jetzt kostenlos beraten lassen</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="f-grid">
-        <div>
-          <div class="f-logo brand"><span class="logo-dot" aria-hidden="true">🏠</span><span>Provisionsfreie Kapitalanlagen</span></div>
-          <p class="f-desc">BMA Berlin Management Agency GmbH – Ihr Partner für Immobilieninvestments ohne Eigenkapital.</p>
-        </div>
-        <div class="f-links">
-          <div class="f-sec">
-            <h4>Rechtliches</h4>
-            <ul>
-              <li><a href="impressum.html">Impressum</a></li>
-              <li><a href="datenschutz.html">Datenschutz</a></li>
-              <li><a href="agb.html">AGB</a></li>
-              <li><a href="widerruf.html">Widerrufsrecht</a></li>
-            </ul>
-          </div>
-          <div class="f-sec">
-            <h4>Kontakt</h4>
-            <ul>
-              <li>📞 +49&nbsp;30&nbsp;30&nbsp;100&nbsp;700</li>
-              <li>✉️ info@provisionsfreie-kapitalanlagen.de</li>
-              <li>📍 BMA Berlin Management Agency GmbH<br>Gipsstr.&nbsp;23b<br>10119 Berlin</li>
-              <li>🕘 Mo–Fr: 9:00–18:00 Uhr</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="f-bottom">
-        <p>&copy; 2025 BMA | Berlin Management Agency GmbH. Alle Rechte vorbehalten.</p>
-        <div class="footer-disclaimers">
-          <small><strong>Geschäftsführer:</strong> Sascha-Johannes Pulcher · <strong>Amtsgericht:</strong> Berlin-Charlottenburg, HRB&nbsp;153919&nbsp;B · <strong>USt-ID:</strong> DE311340734<br>Finanzierungsbeispiele unverbindlich. Bonität vorausgesetzt. Immobilieninvestments unterliegen Marktrisiken.</small>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Mobile Sticky CTA Bar -->
-  <div class="mbar" aria-hidden="true">
-    <div class="mbar-inner" id="mbar-inner" role="group" aria-label="Schnellzugriff">
-      <button class="m-btn primary" data-scroll="#kontakt">Jetzt anfragen</button>
-      <a class="m-btn" id="call-btn" href="tel:+493030100700">Anruf</a>
-      <a class="m-btn" href="mailto:info@provisionsfreie-kapitalanlagen.de">E-Mail</a>
-    </div>
-  </div>
-  <script>
-    // Smooth scroll for anchor links
-    document.querySelectorAll('[data-scroll]').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(el.getAttribute('data-scroll'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    // Show mobile CTA bar after scroll
-    const mbar = document.querySelector('.mbar');
-    const heroHeight = document.querySelector('.hero').offsetHeight;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > heroHeight / 2) {
-        mbar.classList.add('show');
-      } else {
-        mbar.classList.remove('show');
-      }
-    });
-
-    // Form validation (basic)
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      let valid = true;
-      this.querySelectorAll('[required]').forEach(input => {
-        if (!input.value.trim()) {
-          valid = false;
-          input.style.border = '2px solid var(--c-warn)';
-        } else {
-          input.style.border = '';
-        }
-      });
-      if (!valid) {
-        e.preventDefault();
-        alert('Bitte füllen Sie alle Pflichtfelder aus.');
-      }
-    });
-  </script>
+    <!-- JavaScript -->
+    <script>
+        (function() {
+            'use strict';
+            
+            // Sticky CTA Bar Logic
+            const stickyCta = document.getElementById('stickyCta');
+            const contactForm = document.getElementById('kontakt');
+            let scrollThreshold = 0.2;
+            let isVisible = false;
+            
+            if (stickyCta && window.innerWidth <= 768) {
+                // Show/hide based on scroll
+                function handleScroll() {
+                    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                    
+                    if (scrollPercent > scrollThreshold && !isVisible) {
+                        stickyCta.classList.add('visible');
+                        isVisible = true;
+                    }
+                    
+                    // Hide when form is in viewport
+                    if (contactForm) {
+                        const rect = contactForm.getBoundingClientRect();
+                        const isFormVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                        
+                        if (isFormVisible && isVisible) {
+                            stickyCta.classList.remove('visible');
+                            isVisible = false;
+                        } else if (!isFormVisible && scrollPercent > scrollThreshold && !isVisible) {
+                            stickyCta.classList.add('visible');
+                            isVisible = true;
+                        }
+                    }
+                }
+                
+                // Throttle scroll events
+                let ticking = false;
+                function requestTick() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(handleScroll);
+                        ticking = true;
+                        setTimeout(() => { ticking = false; }, 100);
+                    }
+                }
+                
+                window.addEventListener('scroll', requestTick, { passive: true });
+            }
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+                    
+                    if (target) {
+                        // Check for reduced motion preference
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        
+                        if (prefersReducedMotion) {
+                            target.scrollIntoView();
+                        } else {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+            
+            // Form handling
+            const form = document.getElementById('contactForm');
+            if (form) {
+                // Check for success parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('success') === 'true') {
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'success-message';
+                    successMsg.innerHTML = '✅ Vielen Dank! Wir melden uns innerhalb von 24 Stunden bei Ihnen.';
+                    form.parentNode.insertBefore(successMsg, form);
+                    
+                    // Clean URL
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                    
+                    // Remove message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 5000);
+                }
+                
+                // Form validation
+                form.addEventListener('submit', function(e) {
+                    const inputs = this.querySelectorAll('input[required]');
+                    let isValid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.setAttribute('aria-invalid', 'true');
+                            input.style.borderColor = 'var(--accent)';
+                        } else {
+                            input.removeAttribute('aria-invalid');
+                            input.style.borderColor = '';
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        e.preventDefault();
+                        const firstInvalid = this.querySelector('[aria-invalid="true"]');
+                        if (firstInvalid) {
+                            firstInvalid.focus();
+                        }
+                    } else {
+                        // Show loading state
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        if (submitBtn) {
+                            submitBtn.classList.add('loading');
+                            submitBtn.innerHTML = '⏳ Wird gesendet...';
+                        }
+                    }
+                });
+                
+                // Clear validation errors on input
+                form.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('input', function() {
+                        this.removeAttribute('aria-invalid');
+                        this.style.borderColor = '';
+                    });
+                });
+            }
+            
+            // Intersection Observer for fade-in animations
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+                
+                // Observe all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(section);
+                });
+            }
+            
+            // Performance: Lazy load iframe
+            const iframes = document.querySelectorAll('iframe[loading="lazy"]');
+            if ('IntersectionObserver' in window && iframes.length > 0) {
+                const iframeObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const iframe = entry.target;
+                            if (iframe.dataset.src) {
+                                iframe.src = iframe.dataset.src;
+                                iframeObserver.unobserve(iframe);
+                            }
+                        }
+                    });
+                });
+                
+                iframes.forEach(iframe => iframeObserver.observe(iframe));
+            }
+        })();
+    </script>
 </body>
 </html>
