@@ -2,143 +2,329 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGB - BMA | Berlin Management Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AGB - BMA Berlin Management Agency</title>
+    <meta name="description" content="Allgemeine Geschäftsbedingungen der BMA Berlin Management Agency GmbH für Beratungsleistungen">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        * {
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
+        
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e40af;
+            --accent: #dc2626;
+            --text-primary: #1a202c;
+            --text-secondary: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --safe-bottom: env(safe-area-inset-bottom, 0);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #1a202c;
-            background: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-light);
         }
-
+        
+        /* Container */
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding-inline: clamp(1rem, 4vw, 2rem);
         }
-
+        
+        /* Header */
         .header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            padding: 60px 0;
+            padding: clamp(3rem, 8vw, 5rem) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            opacity: 0.8;
-            font-size: 1.1rem;
-        }
-
-        .content {
-            background: white;
-            padding: 60px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: -20px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
         }
-
-        .section {
-            margin-bottom: 40px;
+        
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
-
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3b82f6;
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: clamp(0.75rem, 2vw, 1rem) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
         }
-
-        .section h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1a202c;
-            margin: 25px 0 15px 0;
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
-
-        .section p, .section li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .section ul, .section ol {
-            padding-left: 20px;
-        }
-
+        
         .back-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: #3b82f6;
+            gap: 0.5rem;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 30px;
-            transition: color 0.3s ease;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 44px;
         }
-
-        .back-link:hover {
-            color: #1d4ed8;
+        
+        .back-link:hover, .back-link:focus {
+            background: var(--bg-light);
+            transform: translateX(-4px);
         }
-
-        @media (max-width: 768px) {
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            color: var(--text-primary);
+        }
+        
+        /* Content */
+        .content {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: clamp(2rem, 5vw, 3rem);
+            box-shadow: var(--shadow-lg);
+            margin: clamp(1.5rem, 3vw, 2rem) 0;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: clamp(2rem, 4vw, 2.5rem);
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: clamp(1.5rem, 3vw, 2rem) 0 clamp(0.75rem, 1.5vw, 1rem);
+        }
+        
+        .section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .section ul, .section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--bg-light);
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        /* Links */
+        a:not(.back-link) {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        a:not(.back-link):hover, a:not(.back-link):focus {
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: rgba(255, 255, 255, 0.8);
+            padding: clamp(2rem, 4vw, 3rem) 0 calc(clamp(1rem, 2vw, 1.5rem) + var(--safe-bottom));
+            margin-top: clamp(3rem, 6vw, 4rem);
+            text-align: center;
+        }
+        
+        .footer p {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 640px) {
             .content {
-                padding: 40px 30px;
-                margin: 20px;
+                border-radius: 0;
+                margin-inline: -1rem;
+            }
+        }
+        
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav-bar, .footer {
+                display: none;
+            }
+            
+            .header {
+                background: none;
+                color: var(--text-primary);
+                padding: 2rem 0;
+            }
+            
+            .content {
+                box-shadow: none;
+                padding: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="back-link">
+                    ← Zurück zur Startseite
+                </a>
+                <div class="logo">
+                    🏠 Provisionsfreie Kapitalanlagen
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
         <div class="container">
             <h1>Allgemeine Geschäftsbedingungen</h1>
-            <p>Gültig für alle Beratungsleistungen der BMA Berlin Management Agency GmbH</p>
+            <p>Gültig für alle Beratungsleistungen der BMA</p>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
+    <!-- Main Content -->
+    <main class="container">
         <div class="content">
-            <a href="index.html" class="back-link">
-                ← Zurück zur Startseite
-            </a>
-
-            <div class="section">
+            <section class="section">
                 <h2>§ 1 Geltungsbereich</h2>
-                <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen der BMA | Berlin Management Agency GmbH (nachfolgend "BMA" genannt) und dem Kunden über die Erbringung von Beratungsleistungen im Bereich Immobilieninvestments.</p>
+                <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen der BMA Berlin Management Agency GmbH (nachfolgend "BMA" genannt) und dem Kunden über die Erbringung von Beratungsleistungen im Bereich Immobilieninvestments.</p>
                 
                 <p>Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Kunden werden nicht Vertragsbestandteil, es sei denn, ihrer Geltung wird ausdrücklich zugestimmt.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 2 Vertragspartner</h2>
-                <p><strong>BMA Berlin Management Agency GmbH</strong><br>
-                Gipsstr. 23b<br>
-                10119 Berlin<br>
-                Deutschland</p>
-                
-                <p>Geschäftsführer: Sascha-Johannes Pulcher<br>
-                Amtsgericht Berlin-Charlottenburg, HRB 153919 B<br>
-                USt-ID: DE311340734</p>
-            </div>
+                <div class="highlight-box">
+                    <p><strong>BMA Berlin Management Agency GmbH</strong><br>
+                    Gipsstr. 23b<br>
+                    10119 Berlin<br>
+                    Deutschland</p>
+                    
+                    <p>Geschäftsführer: Sascha-Johannes Pulcher<br>
+                    Amtsgericht Berlin-Charlottenburg, HRB 153919 B<br>
+                    USt-ID: DE311340734</p>
+                </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 3 Leistungsumfang</h2>
                 <p>BMA erbringt Beratungsleistungen im Bereich Immobilieninvestments, insbesondere:</p>
                 
@@ -151,21 +337,23 @@
                 </ul>
                 
                 <p>Die konkreten Leistungen ergeben sich aus der jeweiligen Vereinbarung mit dem Kunden.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 4 Vertragsschluss</h2>
                 <p>Ein Vertrag kommt durch die Übermittlung der Kontaktdaten über das Kontaktformular und die Bestätigung durch BMA zustande. Die Erstberatung ist kostenlos und unverbindlich.</p>
                 
                 <p>Weiterführende Beratungsleistungen werden in separaten Vereinbarungen geregelt.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 5 Vergütung</h2>
-                <p>Die Erstberatung erfolgt kostenfrei. Für weiterführende Leistungen werden gesonderte Vereinbarungen getroffen. BMA arbeitet provisionsfrei für den Kunden - etwaige Provisionen werden von den vermittelnden Partnern getragen.</p>
-            </div>
+                <p>Die Erstberatung erfolgt kostenfrei. Für weiterführende Leistungen werden gesonderte Vereinbarungen getroffen.</p>
+                
+                <p>BMA arbeitet provisionsfrei für den Kunden - etwaige Provisionen werden von den vermittelnden Partnern getragen.</p>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 6 Pflichten des Kunden</h2>
                 <p>Der Kunde verpflichtet sich:</p>
                 
@@ -175,47 +363,51 @@
                     <li>Termine einzuhalten oder rechtzeitig abzusagen</li>
                     <li>Bei der Beschaffung erforderlicher Unterlagen mitzuwirken</li>
                 </ul>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 7 Haftung</h2>
                 <p>BMA haftet nur bei Vorsatz und grober Fahrlässigkeit. Die Haftung für leichte Fahrlässigkeit ist ausgeschlossen, es sei denn, es handelt sich um die Verletzung wesentlicher Vertragspflichten (Kardinalpflichten).</p>
                 
                 <p>Bei der Verletzung wesentlicher Vertragspflichten durch leichte Fahrlässigkeit ist die Haftung auf den typischen, vorhersehbaren Schaden begrenzt.</p>
                 
                 <p>Die Haftung für mittelbare Schäden, Folgeschäden und entgangenen Gewinn ist ausgeschlossen, es sei denn, diese beruhen auf vorsätzlichem oder grob fahrlässigem Verhalten.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 8 Datenschutz</h2>
                 <p>BMA verpflichtet sich, alle im Rahmen der Geschäftsbeziehung bekannt gewordenen Daten des Kunden vertraulich zu behandeln und nur im Rahmen der Zweckbestimmung zu verwenden.</p>
                 
                 <p>Weitere Informationen zum Datenschutz finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 9 Widerrufsrecht</h2>
                 <p>Verbrauchern steht ein gesetzliches Widerrufsrecht zu. Einzelheiten regelt die <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 10 Kündigung</h2>
                 <p>Die Erstberatung kann jederzeit ohne Angabe von Gründen beendet werden. Für weiterführende Verträge gelten die dort vereinbarten Kündigungsbestimmungen.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>§ 11 Schlussbestimmungen</h2>
                 <p>Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</p>
                 
                 <p>Gerichtsstand für alle Streitigkeiten aus diesem Vertragsverhältnis ist Berlin, sofern der Kunde Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.</p>
                 
                 <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
-            </div>
-
-            <div class="section">
-                <p><em>Stand: Januar 2025</em></p>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BMA Berlin Management Agency GmbH. Alle Rechte vorbehalten.</p>
+            <p>Stand: Januar 2025</p>
+        </div>
+    </footer>
 </body>
 </html>

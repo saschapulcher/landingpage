@@ -2,124 +2,305 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum - BMA | Berlin Management Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Impressum - BMA Berlin Management Agency</title>
+    <meta name="description" content="Impressum der BMA Berlin Management Agency GmbH - Rechtliche Angaben gemäß § 5 TMG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        * {
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
+        
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e40af;
+            --accent: #dc2626;
+            --text-primary: #1a202c;
+            --text-secondary: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --safe-bottom: env(safe-area-inset-bottom, 0);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #1a202c;
-            background: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-light);
         }
-
+        
+        /* Container */
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding-inline: clamp(1rem, 4vw, 2rem);
         }
-
+        
+        /* Header */
         .header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            padding: 60px 0;
+            padding: clamp(3rem, 8vw, 5rem) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            opacity: 0.8;
-            font-size: 1.1rem;
-        }
-
-        .content {
-            background: white;
-            padding: 60px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-top: -20px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
         }
-
-        .section {
-            margin-bottom: 40px;
+        
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
-
-        .section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #3b82f6;
+        
+        /* Navigation Bar */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: clamp(0.75rem, 2vw, 1rem) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
         }
-
-        .section p, .section li {
-            margin-bottom: 12px;
-            line-height: 1.7;
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
-
-        .section ul {
-            padding-left: 20px;
-        }
-
-        .contact-info {
-            background: #f8fafc;
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
-        }
-
+        
         .back-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: #3b82f6;
+            gap: 0.5rem;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 30px;
-            transition: color 0.3s ease;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 44px;
         }
-
-        .back-link:hover {
-            color: #1d4ed8;
+        
+        .back-link:hover, .back-link:focus {
+            background: var(--bg-light);
+            transform: translateX(-4px);
         }
-
-        @media (max-width: 768px) {
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
+            color: var(--text-primary);
+        }
+        
+        /* Content */
+        .content {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: clamp(2rem, 5vw, 3rem);
+            box-shadow: var(--shadow-lg);
+            margin: clamp(1.5rem, 3vw, 2rem) 0;
+        }
+        
+        /* Sections */
+        .section {
+            margin-bottom: clamp(2rem, 4vw, 2.5rem);
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(1rem, 2vw, 1.5rem);
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .section h3 {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: clamp(1.5rem, 3vw, 2rem) 0 clamp(0.75rem, 1.5vw, 1rem);
+        }
+        
+        .section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Contact Info Box */
+        .contact-info {
+            background: var(--bg-light);
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            margin: 1.5rem 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        /* Links */
+        a:not(.back-link) {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        
+        a:not(.back-link):hover, a:not(.back-link):focus {
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: rgba(255, 255, 255, 0.8);
+            padding: clamp(2rem, 4vw, 3rem) 0 calc(clamp(1rem, 2vw, 1.5rem) + var(--safe-bottom));
+            margin-top: clamp(3rem, 6vw, 4rem);
+            text-align: center;
+        }
+        
+        .footer p {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 640px) {
             .content {
-                padding: 40px 30px;
-                margin: 20px;
+                border-radius: 0;
+                margin-inline: -1rem;
+            }
+        }
+        
+        /* Accessibility */
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav-bar, .footer {
+                display: none;
+            }
+            
+            .header {
+                background: none;
+                color: var(--text-primary);
+                padding: 2rem 0;
+            }
+            
+            .content {
+                box-shadow: none;
+                padding: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="back-link">
+                    ← Zurück zur Startseite
+                </a>
+                <div class="logo">
+                    🏠 Provisionsfreie Kapitalanlagen
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
         <div class="container">
             <h1>Impressum</h1>
             <p>Rechtliche Angaben gemäß § 5 TMG</p>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
+    <!-- Main Content -->
+    <main class="container">
         <div class="content">
-            <a href="index.html" class="back-link">
-                ← Zurück zur Startseite
-            </a>
-
-            <div class="section">
+            <section class="section">
                 <h2>Angaben gemäß § 5 TMG</h2>
                 <div class="contact-info">
                     <p><strong>BMA Berlin Management Agency GmbH</strong></p>
@@ -127,40 +308,42 @@
                     10119 Berlin<br>
                     Deutschland</p>
                 </div>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Vertreten durch</h2>
                 <p><strong>Geschäftsführer:</strong> Sascha-Johannes Pulcher</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Kontakt</h2>
-                <p><strong>Telefon:</strong> +49 30 30 100 700<br>
-                <strong>E-Mail:</strong> info@provisionsfreie-kapitalanlagen.de</p>
-            </div>
+                <p>
+                    <strong>Telefon:</strong> <a href="tel:+493030100700">+49 30 30 100 700</a><br>
+                    <strong>E-Mail:</strong> <a href="mailto:info@provisionsfreie-kapitalanlagen.de">info@provisionsfreie-kapitalanlagen.de</a>
+                </p>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Registereintrag</h2>
                 <p><strong>Eingetragen im Handelsregister</strong><br>
                 Amtsgericht Berlin-Charlottenburg<br>
                 Registernummer: HRB 153919 B</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Umsatzsteuer-ID</h2>
                 <p><strong>Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:</strong><br>
                 DE311340734</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
                 <p>Sascha-Johannes Pulcher<br>
                 Gipsstr. 23b<br>
                 10119 Berlin</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Haftungsausschluss</h2>
                 
                 <h3>Haftung für Inhalte</h3>
@@ -177,15 +360,23 @@
                 <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
                 
                 <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
-            </div>
+            </section>
 
-            <div class="section">
+            <section class="section">
                 <h2>Streitschlichtung</h2>
-                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank">https://ec.europa.eu/consumers/odr</a>.</p>
+                <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>.</p>
                 
                 <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BMA Berlin Management Agency GmbH. Alle Rechte vorbehalten.</p>
+            <p>Stand: Januar 2025</p>
+        </div>
+    </footer>
 </body>
 </html>
